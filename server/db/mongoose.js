@@ -5,6 +5,6 @@ let db = {
     localhost: 'mongodb://localhost:27017/TodoApp',
     mlab: 'mongodb://testcase:testuser1@ds249092.mlab.com:49092/gemmas-todo-db'
 }
-mongoose.connect(db.localhost || db.mlab, { useNewUrlParser: true });
+mongoose.connect(process.env.PORT ? db.mlab : db.localhost, { useNewUrlParser: true });
 
 module.exports = {mongoose};
