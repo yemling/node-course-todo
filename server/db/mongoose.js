@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise; //make mongoose use its own promise function
-mongoose.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true });
+let db = {
+    localhost: 'mongodb://localhost:27017/TodoApp',
+    mlab: 'mongodb://testcase:testuser1@ds249092.mlab.com:49092/gemmas-todo-db'
+}
+mongoose.connect(db.localhost || db.mlab, { useNewUrlParser: true });
 
 module.exports = {mongoose};
