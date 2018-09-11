@@ -15,6 +15,8 @@ const {
     User
 } = require('./models/user');
 
+const {authenicate} = require('./middleware/authenicate');
+
 var app = express();
 const port = process.env.PORT;
 app.use(bodyParser.json()); //can sens josn to express
@@ -115,6 +117,10 @@ app.post('/users', (req, res) => {
         res.status(400).send(err);
     })
 });
+
+app.get('/users/me', authenicate, (req, res) => {
+   res.send(req.user);
+})
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
